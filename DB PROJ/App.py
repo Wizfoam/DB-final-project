@@ -10,8 +10,8 @@ def before_request_func():
     #                          !!!!!!!!!!!!!!!!!!!!!!!!!!!
     g.db = mysql.connector.connect(host='localhost',
                                    user='root',
-                                   password='Z1a2Q3x4S5w6!',
-                                   database='Albion')
+                                   password='',
+                                   database='')
     g.cursor = g.db.cursor(dictionary=True)
 
 @app.teardown_request
