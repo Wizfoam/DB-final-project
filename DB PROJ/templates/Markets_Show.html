@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin:0px;
+            background-color: #999999;
+        }
+        header {
+            background-color: #3b3b3b;
+            height: 80px;
+            margin:0px;
+            color:	#999999;
+        }
+        .header_home_button {
+            background-color: #3b3b3b;
+            color:#999999;
+            font-size: Large;
+            height:100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            border: none;
+        }
+        .header_home_button:hover {
+            background-color: #777777;
+            color:#3b3b3b
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 2px solid black;
+        }
+        td, th {
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/"><button class="header_home_button">Albion Market Tool</button></a>
+        <a href="/Traveling_Merchant"><button class="header_home_button">Merchant</button></a>
+        <a href="/Recipe"><button class="header_home_button">Recipe</button></a>
+        <a href="/Update"><button class="header_home_button">Update</button></a>
+        <a href="/Analytics"><button class="header_home_button">Analytics</button></a>
+    </header>
+
+    <div style="padding-left: 1.5%; text-align: center;">
+        <h1>Get City Statistics</h1>
+        <form action="/Analytics/Show" method="post">
+        <label for="Cities">Select Item:</label>
+            <select name="Cities" id="Cities">
+            {% for City in Cities %}
+                <option value="{{ City.CityID }}">{{ City.City_Name }}</option>
+            {% endfor %}
+            </select>
+            <button type="submit">Show Stats</button>
+        </form>
+        <h1>{{ Current_City[0].Name }} Stats</h1>
+        <div style="padding-left: 30%; padding-right: 30%; padding-top: 25px;">
+            <table>
+                <tr>
+                <th>Sum Of Silver</th>
+                <th>Average Price</th>
+                <th>Sum Unique Items</th>
+                <th>Highest Price</th>
+                <th>Lowest Price</th>
+                <th>Standard Deviation</th>
+                </tr>
+                <tr>
+                <td>{{ Stats[0].Sum }} Silver</td>
+                <td>{{ Stats[0].Average }} Silver</td>
+                <td>{{ Stats[0].Count }}</td>
+                <td>{{ Stats[0].Max }} Silver</td>
+                <td>{{ Stats[0].Min }} Silver</td>
+                <td>{{ Stats[0].SD }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
